@@ -1,0 +1,183 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&family=Patrick+Hand&family=Archivo+Black&family=Inter:wght@300;400;500;600;700&family=Shadows+Into+Light&family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,700&display=swap');
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-hand: 'Caveat', cursive;
+  --font-marker: 'Shadows Into Light', cursive;
+  --font-note: 'Patrick Hand', cursive;
+  --font-display: 'Playfair Display', serif;
+  --font-block: 'Archivo Black', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-grid-line: var(--grid-line);
+  --color-accent-blue: var(--accent-blue);
+  --color-accent-yellow: var(--accent-yellow);
+  --color-accent-pink: var(--accent-pink);
+  --color-accent-green: var(--accent-green);
+  --color-accent-orange: var(--accent-orange);
+  --color-tape: var(--tape);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+}
+
+:root {
+  --radius: 0.5rem;
+  --background: oklch(0.985 0.008 90);
+  --foreground: oklch(0.2 0.02 260);
+
+  --paper: oklch(0.985 0.008 90);
+  --ink: oklch(0.25 0.05 260);
+  --ink-soft: oklch(0.45 0.03 260);
+  --grid-line: oklch(0.82 0.04 240);
+
+  --accent-blue: oklch(0.45 0.22 260);
+  --accent-yellow: oklch(0.92 0.18 95);
+  --accent-pink: oklch(0.85 0.09 25);
+  --accent-green: oklch(0.78 0.13 145);
+  --accent-orange: oklch(0.72 0.18 50);
+  --tape: oklch(0.92 0.06 95 / 0.65);
+
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--accent-blue);
+  --primary-foreground: oklch(0.99 0 0);
+  --secondary: oklch(0.94 0.02 90);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.94 0.02 90);
+  --muted-foreground: var(--ink-soft);
+  --accent: var(--accent-yellow);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.6 0.22 25);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.85 0.03 90);
+  --input: oklch(0.9 0.02 90);
+  --ring: var(--accent-blue);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+  }
+}
+
+/* Notebook grid paper */
+.bg-grid {
+  background-color: var(--color-paper);
+  background-image:
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -1px -1px;
+}
+
+/* Spiral binding (top) */
+.spiral-binding {
+  height: 38px;
+  background:
+    radial-gradient(circle at 18px 50%, #2a2a2a 0 6px, transparent 7px),
+    radial-gradient(circle at 18px 50%, transparent 11px, #d4cbb6 12px 14px, transparent 15px);
+  background-size: 56px 100%;
+  background-repeat: repeat-x;
+  position: relative;
+}
+.spiral-binding::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.08), transparent 60%);
+}
+.spiral-ring {
+  width: 14px; height: 22px;
+  border: 3px solid #2a2a2a;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #888 0%, #444 60%, #222 100%);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.25);
+}
+
+/* Polaroid / sticky note cards */
+.polaroid {
+  background: #fff;
+  padding: 10px 10px 14px;
+  box-shadow:
+    0 1px 0 rgba(0,0,0,0.06),
+    0 12px 24px -10px rgba(0,0,0,0.25);
+  border: 1px solid oklch(0.9 0.02 90);
+}
+.note-card {
+  background: #fff;
+  padding: 14px 16px;
+  box-shadow: 0 8px 18px -10px rgba(0,0,0,0.25);
+  border: 1px solid oklch(0.9 0.02 90);
+  position: relative;
+}
+.tape-strip {
+  position: absolute;
+  width: 64px; height: 18px;
+  background: var(--color-tape);
+  border-left: 1px dashed rgba(0,0,0,0.08);
+  border-right: 1px dashed rgba(0,0,0,0.08);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+}
+.highlight-yellow {
+  background: linear-gradient(transparent 55%, var(--color-accent-yellow) 55% 92%, transparent 92%);
+  padding: 0 4px;
+}
+.doodle-arrow {
+  color: var(--accent-blue);
+  font-family: var(--font-hand);
+}
+
+/* Dark / inverted section */
+.section-dark {
+  background: oklch(0.18 0.03 260);
+  color: oklch(0.95 0.01 90);
+}
+.section-dark .bg-grid {
+  background-color: oklch(0.18 0.03 260);
+  background-image:
+    linear-gradient(oklch(0.28 0.04 260) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(0.28 0.04 260) 1px, transparent 1px);
+}
+
+/* Typewriter caret */
+@keyframes caret-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+.caret::after {
+  content: "|";
+  margin-left: 2px;
+  animation: caret-blink 0.9s steps(1) infinite;
+  color: var(--accent-blue);
+  font-weight: 400;
+}
